@@ -63,3 +63,49 @@ int calculatesum(int input1[],int input2)
     return sum;
     
 }
+string question -just part part the string(substring):
+
+
+#include <stdio.h>
+#include<stdlib.h>
+char* substring(char* str,int m,int n)
+{
+    int cnt=0;
+    char *sub=(char*)malloc(sizeof(char)*50);
+    for(int i=m;i<n&&str[i]!='\0';i++)
+    {
+        sub[cnt++]=str[i];
+    }
+    sub[cnt]='\0';
+    return sub;
+}
+int main(void) {
+    int cnt=0,j=0,count=0,i;
+    char str[]="hello world this is a program";
+    for(int i=0;str[i]!='\0';i++)
+    {
+        if(str[i]==' ')
+        {
+            cnt++;
+        }
+    }
+    char *strarr[cnt+1];
+    for(i=0;str[i]!='\0';i++)
+    {
+        if(str[i]==' '||str[i]=='\0')
+        {
+            strarr[count++]=substring(str,j,i);
+            j=i+1;
+        }
+    }
+    if(str[i]=='\0')
+    {
+        strarr[count++]=substring(str,j,i);
+    }
+for(int i=0;i<cnt+1;i++)
+{
+    printf("%s\n",strarr[i]);
+}
+
+	return 0;
+}
