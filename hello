@@ -314,3 +314,106 @@ int main(void) {
 
 	return 0;
 }
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char* substr(char* str,int m,int n)
+{
+    char *new=(char*)malloc(sizeof(char));
+    int cnt=0;
+    for(int i=m;i<n&&str[i]!='\ 0';i++)
+    {
+        new[cnt++]=str[i];
+    }
+    new[cnt]='\0';
+    return new;
+}
+char* rev(char* str)
+{
+    char *revarr=(char*)malloc(sizeof(char)*50);
+    int i,cnt=0;
+    for(i=0;str[i]!='\0';i++)
+    {}
+    for(int j=i-1;j>=0;j--)
+    {
+        revarr[cnt++]=str[j];
+    }
+    revarr[cnt]='\0';
+    return revarr;
+}
+int main()
+{
+    char str[]="Today is a Nice Day";
+    int scnt=0,cnt=0,j=0;
+    int no=41,no1,no2;
+    for(int i=0;str[i]!='\0';i++)
+    {
+        if(str[i]==' ')
+        {
+            scnt++;
+        }
+    }
+    char *starr[scnt+1];
+    int i;
+    for(i=0;str[i]!='\0';i++)
+    {
+        if(str[i]==' ')
+        {
+            starr[cnt++]=substr(str,j,i);
+            j=i+1;
+        }
+    }
+    starr[cnt]=substr(str,j,i+1);
+    no2=no%10;
+    no/=10;
+    no1=no%10;
+    char *string1=starr[no1-1];
+    char *string2=starr[no2-1];
+    char *string_1;
+    char *string_2;
+    if(strlen(string1)%2==0)
+    {
+        int c=strlen(string1)/2;
+        string_1=strcat(substr(string1,c,strlen(string1)),rev(substr(string1,0,c)));
+    }
+    else if(strlen(string1)%2!=0)
+    {
+        int c=strlen(string1)/2;
+        string_1=strcat(substr(string1,c,strlen(string1)),rev(substr(string1,0,c+1)));
+        
+    }
+       if(strlen(string2)%2==0)
+    {
+        int c=strlen(string2)/2;
+        string_2=strcat(substr(string2,c,strlen(string2)),rev(substr(string2,0,c)));
+    }
+    else if(strlen(string2)%2!=0)
+    {
+        int c=strlen(string2)/2;
+        string_2=strcat(substr(string2,c,strlen(string2)),rev(substr(string2,0,c+1)));
+        
+    }
+   char *output=malloc(sizeof(char)*50);
+    int c1=strlen(string_1);
+    int c2=strlen(string_2);
+    int length=c1+c2+1,count;
+    for(count=0;count<c1;count++)
+    {
+        output[count]=string_1[count];
+    }
+    output[count]=' ';
+    int k=0;
+    for(count=c1+1;count<length;count++)
+    {
+        output[count]=string_2[k++];
+    }
+    output[count++]='\0';
+    printf("%s",output);
+    
+    return 0;
+    
+
+}
